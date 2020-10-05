@@ -1,0 +1,1990 @@
+Logistic Regression Output
+1.	Load Credit Data.csv into R/Rattle.
+2.	Transform categoric variables “as categoric” and ignore ethical variables.
+3.	Run Summary Statistics:
++--------------------+-----------------------------+
+|Variable            |Levels                       |
++--------------------+-----------------------------+
+|TFC_CHK_ACCT        |[0,0],(0,1],(1,2],(2,3]      |
++--------------------+-----------------------------+
+|TFC_HISTORY         |[0,0],(0,1],(1,2],(2,3],(3,4]|
+|TFC_SAV_ACCT        |                             |
+|TFC_EMPLOYMENT      |                             |
++--------------------+-----------------------------+
+|TFC_NEW_CAR         |[0,0],(0,1]                  |
+|TFC_USED_CAR        |                             |
+|TFC_FURNITURE       |                             |
+|TFC_RADIO.TV        |                             |
+|TFC_EDUCATION       |                             |
+|TFC_RETRAINING      |                             |
+|TFC_CO.APPLICANT    |                             |
+|TFC_GUARANTOR       |                             |
+|TFC_REAL_ESTATE     |                             |
+|TFC_PROP_UNKN_NONE  |                             |
+|TFC_OTHER_INSTALL   |                             |
+|TFC_RENT            |                             |
+|TFC_OWN_RES         |                             |
+|TFC_TELEPHONE       |                             |
++--------------------+-----------------------------+
+|TFC_PRESENT_RESIDENT|[1,1],(1,2],(2,3],(3,4]      |
++--------------------+-----------------------------+
+
+For the simple distribution tables below the 1st and 3rd Qu. 
+refer to the first and third quartiles, indicating that 25% 
+of the observations have values of that variable which are 
+less than or greater than (respectively) the value listed.
+
+    DURATION         AMOUNT       INSTALL_RATE   NUM_CREDITS    NUM_DEPENDENTS TFC_CHK_ACCT
+ Min.   : 4.00   Min.   :  250   Min.   :1.00   Min.   :1.000   Min.   :1.00   [0,0]:197   
+ 1st Qu.:12.00   1st Qu.: 1361   1st Qu.:2.00   1st Qu.:1.000   1st Qu.:1.00   (0,1]:183   
+ Median :18.00   Median : 2218   Median :3.00   Median :1.000   Median :1.00   (1,2]: 37   
+ Mean   :20.45   Mean   : 3192   Mean   :2.99   Mean   :1.407   Mean   :1.16   (2,3]:283   
+ 3rd Qu.:24.00   3rd Qu.: 3833   3rd Qu.:4.00   3rd Qu.:2.000   3rd Qu.:1.00               
+ Max.   :72.00   Max.   :18424   Max.   :4.00   Max.   :4.000   Max.   :2.00               
+ TFC_HISTORY TFC_NEW_CAR TFC_USED_CAR TFC_FURNITURE TFC_RADIO.TV TFC_EDUCATION TFC_RETRAINING
+ [0,0]: 29   [0,0]:547   [0,0]:621    [0,0]:572     [0,0]:499    [0,0]:664     [0,0]:636     
+ (0,1]: 36   (0,1]:153   (0,1]: 79    (0,1]:128     (0,1]:201    (0,1]: 36     (0,1]: 64     
+ (1,2]:369                                                                                   
+ (2,3]: 59                                                                                   
+ (3,4]:207                                                                                   
+                                                                                             
+ TFC_SAV_ACCT TFC_EMPLOYMENT TFC_CO.APPLICANT TFC_GUARANTOR TFC_PRESENT_RESIDENT TFC_REAL_ESTATE
+ [0,0]:440    [0,0]: 47      [0,0]:676        [0,0]:662     [1,1]: 91            [0,0]:496      
+ (0,1]: 70    (0,1]:117      (0,1]: 24        (0,1]: 38     (1,2]:228            (0,1]:204      
+ (1,2]: 42    (1,2]:238                                     (2,3]:103                           
+ (2,3]: 31    (2,3]:127                                     (3,4]:278                           
+ (3,4]:117    (3,4]:171                                                                         
+                                                                                                
+ TFC_PROP_UNKN_NONE TFC_OTHER_INSTALL  TFC_RENT   TFC_OWN_RES TFC_TELEPHONE    DEFAULT   
+ [0,0]:597          [0,0]:576         [0,0]:569   [0,0]:201   [0,0]:425     Min.   :0.0  
+ (0,1]:103          (0,1]:124         (0,1]:131   (0,1]:499   (0,1]:275     1st Qu.:0.0  
+                                                                            Median :0.0  
+                                                                            Mean   :0.3  
+                                                                            3rd Qu.:1.0  
+                                                                            Max.   :1.0  
+
+Rattle timestamp: 2020-10-05 13:54:54 glopi
+4.	Run Visualizations
+Bar plots, box plots saved as Logistic Regression Bar Plots…etc.
+Correlation summary using the 'Pearson' covariance.
+
+Note that only correlations between numeric variables are reported.
+
+               NUM_DEPENDENTS  NUM_CREDITS INSTALL_RATE       AMOUNT    DURATION
+NUM_DEPENDENTS     1.00000000  0.109838286  -0.05259051 -0.013672770 -0.03129423
+NUM_CREDITS        0.10983829  1.000000000   0.04197812 -0.005866596 -0.02244152
+INSTALL_RATE      -0.05259051  0.041978120   1.00000000 -0.288096230  0.04276677
+AMOUNT            -0.01367277 -0.005866596  -0.28809623  1.000000000  0.62442890
+DURATION          -0.03129423 -0.022441523   0.04276677  0.624428898  1.00000000
+
+Rattle timestamp: 2020-10-05 14:05:52 glopi
+Note that principal components on only the numeric
+ variables is calculated, and so we can not use this
+ approach to remove categoric variables from  consideration.
+
+ Any numeric variables with relatively large rotation
+ values (negative or positive) in any of the first few
+ components are generally variables that you may wish
+ to include in the modelling.
+
+Rattle timestamp: 2020-10-05 14:09:16 glopi
+======================================================================
+Standard deviations (1, .., p=5):
+[1] 1.2939041 1.0562337 1.0243416 0.9308888 0.5425431
+
+Rotation (n x k) = (5 x 5):
+                       PC1         PC2          PC3         PC4         PC5
+DURATION       -0.64676487 -0.10582129  0.370537992 -0.16516327  0.63711832
+AMOUNT         -0.71302781  0.05917205 -0.008714797  0.04568229 -0.69708478
+INSTALL_RATE    0.26425175 -0.30001252  0.795504659 -0.31737922 -0.32650616
+NUM_CREDITS     0.04938634  0.60202802  0.479173251  0.63576836  0.03626080
+NUM_DEPENDENTS  0.03191462  0.72996937 -0.013819600 -0.68242454 -0.01522986
+
+Rattle timestamp: 2020-10-05 14:09:16 glopi
+======================================================================
+Importance of components:
+                          PC1    PC2    PC3    PC4     PC5
+Standard deviation     1.2939 1.0562 1.0243 0.9309 0.54254
+Proportion of Variance 0.3348 0.2231 0.2099 0.1733 0.05887
+Cumulative Proportion  0.3348 0.5580 0.7678 0.9411 1.00000
+
+Rattle timestamp: 2020-10-05 14:09:16 glopi
+5.	Logistic Regression
+Summary of the Logistic Regression model (built using glm):
+6.	
+7.	Call:
+8.	glm(formula = DEFAULT ~ ., family = binomial(link = "logit"), 
+9.	    data = crs$dataset[crs$train, c(crs$input, crs$target)])
+10.	
+11.	Deviance Residuals: 
+12.	    Min       1Q   Median       3Q      Max  
+13.	-1.9896  -0.7267  -0.3630   0.6969   2.6451  
+14.	
+15.	Coefficients:
+16.	                             Estimate  Std. Error z value Pr(>|z|)    
+17.	(Intercept)               -2.02252932  1.12523819  -1.797  0.07227 .  
+18.	DURATION                   0.03018385  0.01104457   2.733  0.00628 ** 
+19.	AMOUNT                     0.00008111  0.00005183   1.565  0.11762    
+20.	INSTALL_RATE               0.25698489  0.10424450   2.465  0.01369 *  
+21.	NUM_CREDITS                0.15676823  0.22490877   0.697  0.48578    
+22.	NUM_DEPENDENTS             0.10499894  0.28688429   0.366  0.71437    
+23.	TFC_CHK_ACCT(0,1]         -0.27724692  0.25511354  -1.087  0.27714    
+24.	TFC_CHK_ACCT(1,2]         -1.01213543  0.43916373  -2.305  0.02118 *  
+25.	TFC_CHK_ACCT(2,3]         -1.91059235  0.28355130  -6.738  1.6e-11 ***
+26.	TFC_HISTORY(0,1]          -0.43050419  0.63292065  -0.680  0.49639    
+27.	TFC_HISTORY(1,2]          -0.79224980  0.50566724  -1.567  0.11718    
+28.	TFC_HISTORY(2,3]          -1.05827174  0.57005866  -1.856  0.06339 .  
+29.	TFC_HISTORY(3,4]          -1.51678836  0.51886930  -2.923  0.00346 ** 
+30.	TFC_NEW_CAR(0,1]           0.81762892  0.46928862   1.742  0.08146 .  
+31.	TFC_USED_CAR(0,1]         -1.03955037  0.58591393  -1.774  0.07602 .  
+32.	TFC_FURNITURE(0,1]         0.06542205  0.48256624   0.136  0.89216    
+33.	TFC_RADIO.TV(0,1]         -0.06397239  0.47265461  -0.135  0.89234    
+34.	TFC_EDUCATION(0,1]         0.71633531  0.60868288   1.177  0.23925    
+35.	TFC_RETRAINING(0,1]        0.13082620  0.54392771   0.241  0.80993    
+36.	TFC_SAV_ACCT(0,1]         -0.07492417  0.34819586  -0.215  0.82963    
+37.	TFC_SAV_ACCT(1,2]         -0.32877918  0.46678745  -0.704  0.48122    
+38.	TFC_SAV_ACCT(2,3]         -0.90014281  0.63816380  -1.411  0.15839    
+39.	TFC_SAV_ACCT(3,4]         -0.94374258  0.33454431  -2.821  0.00479 ** 
+40.	TFC_EMPLOYMENT(0,1]        0.43615518  0.45272184   0.963  0.33534    
+41.	TFC_EMPLOYMENT(1,2]       -0.05364979  0.42542495  -0.126  0.89965    
+42.	TFC_EMPLOYMENT(2,3]       -0.62282932  0.47178399  -1.320  0.18678    
+43.	TFC_EMPLOYMENT(3,4]       -0.08552202  0.43588632  -0.196  0.84445    
+44.	TFC_CO.APPLICANT(0,1]     -0.16405250  0.52769002  -0.311  0.75589    
+45.	TFC_GUARANTOR(0,1]        -1.62060695  0.54997658  -2.947  0.00321 ** 
+46.	TFC_PRESENT_RESIDENT(1,2]  0.91558636  0.35124262   2.607  0.00914 ** 
+47.	TFC_PRESENT_RESIDENT(2,3]  0.36604764  0.39932739   0.917  0.35932    
+48.	TFC_PRESENT_RESIDENT(3,4]  0.36770990  0.35233760   1.044  0.29666    
+49.	TFC_REAL_ESTATE(0,1]      -0.20597495  0.24911353  -0.827  0.40833    
+50.	TFC_PROP_UNKN_NONE(0,1]    0.54998163  0.44742954   1.229  0.21900    
+51.	TFC_OTHER_INSTALL(0,1]     0.74700873  0.26090436   2.863  0.00419 ** 
+52.	TFC_RENT(0,1]              0.83672374  0.54437089   1.537  0.12428    
+53.	TFC_OWN_RES(0,1]           0.30745580  0.51777499   0.594  0.55264    
+54.	TFC_TELEPHONE(0,1]        -0.18759286  0.22515209  -0.833  0.40474    
+55.	---
+56.	Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+57.	
+58.	(Dispersion parameter for binomial family taken to be 1)
+59.	
+60.	    Null deviance: 855.21  on 699  degrees of freedom
+61.	Residual deviance: 631.62  on 662  degrees of freedom
+62.	AIC: 707.62
+63.	
+64.	Number of Fisher Scoring iterations: 5
+65.	
+66.	Log likelihood: -315.810 (38 df)
+67.	Null/Residual deviance difference: 223.591 (37 df)
+68.	Chi-square p-value: 0.00000000
+69.	Pseudo R-Square (optimistic): 0.54246760
+70.	
+71.	==== ANOVA ====
+72.	
+73.	Analysis of Deviance Table
+74.	
+75.	Model: binomial, link: logit
+76.	
+77.	Response: DEFAULT
+78.	
+79.	Terms added sequentially (first to last)
+80.	
+81.	
+82.	                     Df Deviance Resid. Df Resid. Dev    Pr(>Chi)    
+83.	NULL                                   699     855.21                
+84.	DURATION              1   22.506       698     832.70 0.000002095 ***
+85.	AMOUNT                1    0.507       697     832.20   0.4766566    
+86.	INSTALL_RATE          1    2.286       696     829.91   0.1305540    
+87.	NUM_CREDITS           1    2.691       695     827.22   0.1008960    
+88.	NUM_DEPENDENTS        1    0.061       694     827.16   0.8055522    
+89.	TFC_CHK_ACCT          3   91.395       691     735.76   < 2.2e-16 ***
+90.	TFC_HISTORY           4   21.591       687     714.17   0.0002417 ***
+91.	TFC_NEW_CAR           1   13.221       686     700.95   0.0002768 ***
+92.	TFC_USED_CAR          1    8.843       685     692.11   0.0029427 ** 
+93.	TFC_FURNITURE         1    0.149       684     691.96   0.6993015    
+94.	TFC_RADIO.TV          1    0.899       683     691.06   0.3431795    
+95.	TFC_EDUCATION         1    2.682       682     688.38   0.1014688    
+96.	TFC_RETRAINING        1    0.127       681     688.25   0.7212121    
+97.	TFC_SAV_ACCT          4    9.553       677     678.70   0.0486673 *  
+98.	TFC_EMPLOYMENT        4   13.114       673     665.59   0.0107342 *  
+99.	TFC_CO.APPLICANT      1    0.003       672     665.58   0.9577542    
+100.	TFC_GUARANTOR         1   10.839       671     654.74   0.0009937 ***
+101.	TFC_PRESENT_RESIDENT  3    7.654       668     647.09   0.0537232 .  
+102.	TFC_REAL_ESTATE       1    1.136       667     645.95   0.2864583    
+103.	TFC_PROP_UNKN_NONE    1    1.093       666     644.86   0.2957080    
+104.	TFC_OTHER_INSTALL     1    7.738       665     637.12   0.0054085 ** 
+105.	TFC_RENT              1    4.470       664     632.65   0.0344894 *  
+106.	TFC_OWN_RES           1    0.335       663     632.32   0.5626945    
+107.	TFC_TELEPHONE         1    0.698       662     631.62   0.4035961    
+108.	---
+109.	Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+110.	
+111.	Time taken: 0.94 secs
+112.	
+113.	Rattle timestamp: 2020-10-05 14:11:43 glopi
+114.	======================================================================
+6. Logistic Regression Remove insignificant variables (left amount)
+Summary of the Logistic Regression model (built using glm):
+
+Call:
+glm(formula = DEFAULT ~ ., family = binomial(link = "logit"), 
+    data = crs$dataset[crs$train, c(crs$input, crs$target)])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.1231  -0.7240  -0.4005   0.7950   2.6481  
+
+Coefficients:
+                             Estimate  Std. Error z value Pr(>|z|)    
+(Intercept)               -0.86030102  0.62387555  -1.379 0.167906    
+DURATION                   0.02596036  0.01051829   2.468 0.013583 *  
+AMOUNT                     0.00008078  0.00004765   1.695 0.089993 .  
+INSTALL_RATE               0.22187302  0.09851856   2.252 0.024316 *  
+TFC_CHK_ACCT(0,1]         -0.28520057  0.24221556  -1.177 0.239010    
+TFC_CHK_ACCT(1,2]         -1.09338667  0.43175001  -2.532 0.011327 *  
+TFC_CHK_ACCT(2,3]         -1.97966327  0.27305864  -7.250 4.17e-13 ***
+TFC_HISTORY(0,1]          -0.54612728  0.59911030  -0.912 0.361998    
+TFC_HISTORY(1,2]          -1.01097976  0.45856727  -2.205 0.027479 *  
+TFC_HISTORY(2,3]          -1.27142814  0.54638430  -2.327 0.019966 *  
+TFC_HISTORY(3,4]          -1.65443792  0.48732421  -3.395 0.000686 ***
+TFC_NEW_CAR(0,1]           0.71891251  0.23118317   3.110 0.001873 ** 
+TFC_USED_CAR(0,1]         -1.00848900  0.40892135  -2.466 0.013655 *  
+TFC_SAV_ACCT(0,1]         -0.00239543  0.32780267  -0.007 0.994169    
+TFC_SAV_ACCT(1,2]         -0.36680429  0.46025510  -0.797 0.425475    
+TFC_SAV_ACCT(2,3]         -0.81922523  0.59799050  -1.370 0.170698    
+TFC_SAV_ACCT(3,4]         -0.94976834  0.32213510  -2.948 0.003195 ** 
+TFC_GUARANTOR(0,1]        -1.80449936  0.52721432  -3.423 0.000620 ***
+TFC_PRESENT_RESIDENT(1,2]  0.78125811  0.32194847   2.427 0.015239 *  
+TFC_PRESENT_RESIDENT(2,3]  0.19167995  0.37312471   0.514 0.607451    
+TFC_PRESENT_RESIDENT(3,4]  0.36660175  0.31381923   1.168 0.242728    
+TFC_OTHER_INSTALL(0,1]     0.78125136  0.25258868   3.093 0.001982 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 855.21  on 699  degrees of freedom
+Residual deviance: 653.86  on 678  degrees of freedom
+AIC: 697.86
+
+Number of Fisher Scoring iterations: 5
+
+Log likelihood: -326.930 (22 df)
+Null/Residual deviance difference: 201.351 (21 df)
+Chi-square p-value: 0.00000000
+Pseudo R-Square (optimistic): 0.52088129
+
+==== ANOVA ====
+
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: DEFAULT
+
+Terms added sequentially (first to last)
+
+
+                     Df Deviance Resid. Df Resid. Dev    Pr(>Chi)    
+NULL                                   699     855.21                
+DURATION              1   22.506       698     832.70 0.000002095 ***
+AMOUNT                1    0.507       697     832.20   0.4766566    
+INSTALL_RATE          1    2.286       696     829.91   0.1305540    
+TFC_CHK_ACCT          3   93.898       693     736.01   < 2.2e-16 ***
+TFC_HISTORY           4   21.247       689     714.77   0.0002829 ***
+TFC_NEW_CAR           1   13.455       688     701.31   0.0002444 ***
+TFC_USED_CAR          1    8.774       687     692.54   0.0030554 ** 
+TFC_SAV_ACCT          4    8.384       683     684.15   0.0784844 .  
+TFC_GUARANTOR         1   13.471       682     670.68   0.0002422 ***
+TFC_PRESENT_RESIDENT  3    7.336       679     663.35   0.0619271 .  
+TFC_OTHER_INSTALL     1    9.487       678     653.86   0.0020694 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Time taken: 0.27 secs
+
+Rattle timestamp: 2020-10-05 14:18:10 glopi
+
+Error Matrix
+Error matrix for the Linear model on Credit Data.csv [validate] (counts):
+
+      Predicted
+Actual  0  1 Error
+     0 96 14  12.7
+     1 22 18  55.0
+
+Error matrix for the Linear model on Credit Data.csv [validate] (proportions):
+
+      Predicted
+Actual    0    1 Error
+     0 64.0  9.3  12.7
+     1 14.7 12.0  55.0
+
+Overall error: 24%, Averaged class error: 33.85%
+
+Rattle timestamp: 2020-10-05 14:19:50 glopi
+RATTLE LOG:
+# Rattle is Copyright (c) 2006-2020 Togaware Pty Ltd.
+# It is free (as in libre) open source software.
+# It is licensed under the GNU General Public License,
+# Version 2. Rattle comes with ABSOLUTELY NO WARRANTY.
+# Rattle was written by Graham Williams with contributions
+# from others as acknowledged in 'library(help=rattle)'.
+# Visit https://rattle.togaware.com/ for details.
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:45:35 x86_64-w64-mingw32 
+
+# Rattle version 5.4.0 user 'glopi'
+
+# This log captures interactions with Rattle as an R script. 
+
+# For repeatability, export this activity log to a 
+# file, like 'model.R' using the Export button or 
+# through the Tools menu. Th script can then serve as a 
+# starting point for developing your own scripts. 
+# After xporting to a file called 'model.R', for exmample, 
+# you can type into a new R Console the command 
+# "source('model.R')" and so repeat all actions. Generally, 
+# you will want to edit the file to suit your own needs. 
+# You can also edit this log in place to record additional 
+# information before exporting the script. 
+ 
+# Note that saving/loading projects retains this log.
+
+# We begin most scripts by loading the required packages.
+# Here are some initial packages to load and others will be
+# identified as we proceed through the script. When writing
+# our own scripts we often collect together the library
+# commands at the beginning of the script here.
+
+library(rattle)   # Access the weather dataset and utilities.
+library(magrittr) # Utilise %>% and %<>% pipeline operators.
+
+# This log generally records the process of building a model. 
+# However, with very little effort the log can also be used 
+# to score a new dataset. The logical variable 'building' 
+# is used to toggle between generating transformations, 
+# when building a model and using the transformations, 
+# when scoring a dataset.
+
+building <- TRUE
+scoring  <- ! building
+
+# A pre-defined value is used to reset the random seed 
+# so that results are repeatable.
+
+crv$seed <- 42 
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:45:50 x86_64-w64-mingw32 
+
+# Load a dataset from file.
+
+fname         <- "file:///C:/Users/glopi/OneDrive/Documents/DAT-690 CAPSTONE PROJECT/Credit Data.csv" 
+crs$dataset <- read.csv(fname,
+			na.strings=c(".", "NA", "", "?"),
+			strip.white=TRUE, encoding="UTF-8")
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:45:52 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# Build the train/validate/test datasets.
+
+# nobs=1000 train=700 validate=150 test=150
+
+set.seed(crv$seed)
+
+crs$nobs <- nrow(crs$dataset)
+
+crs$train <- sample(crs$nobs, 0.7*crs$nobs)
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  sample(0.15*crs$nobs) ->
+crs$validate
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  setdiff(crs$validate) ->
+crs$test
+
+# The following variable selections have been noted.
+
+crs$input     <- c("CHK_ACCT", "DURATION", "HISTORY", "NEW_CAR",
+                   "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT", "EMPLOYMENT",
+                   "INSTALL_RATE", "MALE_DIV", "MALE_SINGLE",
+                   "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "JOB", "NUM_DEPENDENTS",
+                   "TELEPHONE", "FOREIGN")
+
+crs$numeric   <- c("CHK_ACCT", "DURATION", "HISTORY", "NEW_CAR",
+                   "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT", "EMPLOYMENT",
+                   "INSTALL_RATE", "MALE_DIV", "MALE_SINGLE",
+                   "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "JOB", "NUM_DEPENDENTS",
+                   "TELEPHONE", "FOREIGN")
+
+crs$categoric <- NULL
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- "X.U.FEFF.OBS."
+crs$ignore    <- NULL
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:23 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# Build the train/validate/test datasets.
+
+# nobs=1000 train=700 validate=150 test=150
+
+set.seed(crv$seed)
+
+crs$nobs <- nrow(crs$dataset)
+
+crs$train <- sample(crs$nobs, 0.7*crs$nobs)
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  sample(0.15*crs$nobs) ->
+crs$validate
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  setdiff(crs$validate) ->
+crs$test
+
+# The following variable selections have been noted.
+
+crs$input     <- c("CHK_ACCT", "DURATION", "HISTORY", "NEW_CAR",
+                   "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$numeric   <- c("CHK_ACCT", "DURATION", "HISTORY", "NEW_CAR",
+                   "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- NULL
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:40 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_CHK_ACCT"]] <- as.factor(crs$dataset[["CHK_ACCT"]])
+
+  ol <- levels(crs$dataset[["TFC_CHK_ACCT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_CHK_ACCT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:41 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "HISTORY", "NEW_CAR", "USED_CAR",
+                   "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT")
+
+crs$numeric   <- c("DURATION", "HISTORY", "NEW_CAR", "USED_CAR",
+                   "FURNITURE", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- "TFC_CHK_ACCT"
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:53 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_HISTORY"]] <- as.factor(crs$dataset[["HISTORY"]])
+
+  ol <- levels(crs$dataset[["TFC_HISTORY"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_HISTORY"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:54 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "NEW_CAR", "USED_CAR", "FURNITURE",
+                   "RADIO.TV", "EDUCATION", "RETRAINING", "AMOUNT",
+                   "SAV_ACCT", "INSTALL_RATE", "CO.APPLICANT",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY")
+
+crs$numeric   <- c("DURATION", "NEW_CAR", "USED_CAR", "FURNITURE",
+                   "RADIO.TV", "EDUCATION", "RETRAINING", "AMOUNT",
+                   "SAV_ACCT", "INSTALL_RATE", "CO.APPLICANT",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:50:59 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_NEW_CAR"]] <- as.factor(crs$dataset[["NEW_CAR"]])
+
+  ol <- levels(crs$dataset[["TFC_NEW_CAR"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_NEW_CAR"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:01 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "USED_CAR", "FURNITURE",
+                   "RADIO.TV", "EDUCATION", "RETRAINING", "AMOUNT",
+                   "SAV_ACCT", "INSTALL_RATE", "CO.APPLICANT",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR")
+
+crs$numeric   <- c("DURATION", "USED_CAR", "FURNITURE",
+                   "RADIO.TV", "EDUCATION", "RETRAINING", "AMOUNT",
+                   "SAV_ACCT", "INSTALL_RATE", "CO.APPLICANT",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:04 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_USED_CAR"]] <- as.factor(crs$dataset[["USED_CAR"]])
+
+  ol <- levels(crs$dataset[["TFC_USED_CAR"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_USED_CAR"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:06 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "FURNITURE", "RADIO.TV",
+                   "EDUCATION", "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR")
+
+crs$numeric   <- c("DURATION", "FURNITURE", "RADIO.TV",
+                   "EDUCATION", "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:09 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_FURNITURE"]] <- as.factor(crs$dataset[["FURNITURE"]])
+
+  ol <- levels(crs$dataset[["TFC_FURNITURE"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_FURNITURE"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:11 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE")
+
+crs$numeric   <- c("DURATION", "RADIO.TV", "EDUCATION",
+                   "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:14 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_RADIO.TV"]] <- as.factor(crs$dataset[["RADIO.TV"]])
+
+  ol <- levels(crs$dataset[["TFC_RADIO.TV"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_RADIO.TV"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:16 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "EDUCATION", "RETRAINING",
+                   "AMOUNT", "SAV_ACCT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV")
+
+crs$numeric   <- c("DURATION", "EDUCATION", "RETRAINING",
+                   "AMOUNT", "SAV_ACCT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:29 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_EDUCATION"]] <- as.factor(crs$dataset[["EDUCATION"]])
+
+  ol <- levels(crs$dataset[["TFC_EDUCATION"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_EDUCATION"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:31 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION")
+
+crs$numeric   <- c("DURATION", "RETRAINING", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:34 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_RETRAINING"]] <- as.factor(crs$dataset[["RETRAINING"]])
+
+  ol <- levels(crs$dataset[["TFC_RETRAINING"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_RETRAINING"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:36 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "SAV_ACCT",
+                   "INSTALL_RATE", "CO.APPLICANT", "GUARANTOR",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:41 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_SAV_ACCT"]] <- as.factor(crs$dataset[["SAV_ACCT"]])
+
+  ol <- levels(crs$dataset[["TFC_SAV_ACCT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_SAV_ACCT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:42 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION",
+                   "TFC_RETRAINING", "TFC_SAV_ACCT")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:46 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_EMPLOYMENT"]] <- as.factor(crs$dataset[["EMPLOYMENT"]])
+
+  ol <- levels(crs$dataset[["TFC_EMPLOYMENT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_EMPLOYMENT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:48 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION",
+                   "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:54 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_CO.APPLICANT"]] <- as.factor(crs$dataset[["CO.APPLICANT"]])
+
+  ol <- levels(crs$dataset[["TFC_CO.APPLICANT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_CO.APPLICANT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:51:56 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING",
+                   "TFC_SAV_ACCT", "TFC_EMPLOYMENT",
+                   "TFC_CO.APPLICANT")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:31 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_GUARANTOR"]] <- as.factor(crs$dataset[["GUARANTOR"]])
+
+  ol <- levels(crs$dataset[["TFC_GUARANTOR"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_GUARANTOR"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:33 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING",
+                   "TFC_SAV_ACCT", "TFC_EMPLOYMENT",
+                   "TFC_CO.APPLICANT", "TFC_GUARANTOR")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "PRESENT_RESIDENT", "REAL_ESTATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:37 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_PRESENT_RESIDENT"]] <- as.factor(crs$dataset[["PRESENT_RESIDENT"]])
+
+  ol <- levels(crs$dataset[["TFC_PRESENT_RESIDENT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_PRESENT_RESIDENT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:39 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION",
+                   "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "REAL_ESTATE", "PROP_UNKN_NONE", "OTHER_INSTALL",
+                   "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:42 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_REAL_ESTATE"]] <- as.factor(crs$dataset[["REAL_ESTATE"]])
+
+  ol <- levels(crs$dataset[["TFC_REAL_ESTATE"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_REAL_ESTATE"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:44 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING",
+                   "TFC_SAV_ACCT", "TFC_EMPLOYMENT",
+                   "TFC_CO.APPLICANT", "TFC_GUARANTOR",
+                   "TFC_PRESENT_RESIDENT", "TFC_REAL_ESTATE")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "PROP_UNKN_NONE", "OTHER_INSTALL", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:48 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_PROP_UNKN_NONE"]] <- as.factor(crs$dataset[["PROP_UNKN_NONE"]])
+
+  ol <- levels(crs$dataset[["TFC_PROP_UNKN_NONE"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_PROP_UNKN_NONE"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:50 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "OTHER_INSTALL", "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION",
+                   "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "OTHER_INSTALL", "RENT", "OWN_RES", "NUM_CREDITS",
+                   "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:57 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_OTHER_INSTALL"]] <- as.factor(crs$dataset[["OTHER_INSTALL"]])
+
+  ol <- levels(crs$dataset[["TFC_OTHER_INSTALL"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_OTHER_INSTALL"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:52:59 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING",
+                   "TFC_SAV_ACCT", "TFC_EMPLOYMENT",
+                   "TFC_CO.APPLICANT", "TFC_GUARANTOR",
+                   "TFC_PRESENT_RESIDENT", "TFC_REAL_ESTATE",
+                   "TFC_PROP_UNKN_NONE", "TFC_OTHER_INSTALL")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE", "RENT",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:11 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_RENT"]] <- as.factor(crs$dataset[["RENT"]])
+
+  ol <- levels(crs$dataset[["TFC_RENT"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_RENT"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:13 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE", "TFC_CHK_ACCT", "TFC_HISTORY",
+                   "TFC_NEW_CAR", "TFC_USED_CAR", "TFC_FURNITURE",
+                   "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING",
+                   "TFC_SAV_ACCT", "TFC_EMPLOYMENT",
+                   "TFC_CO.APPLICANT", "TFC_GUARANTOR",
+                   "TFC_PRESENT_RESIDENT", "TFC_REAL_ESTATE",
+                   "TFC_PROP_UNKN_NONE", "TFC_OTHER_INSTALL",
+                   "TFC_RENT")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "OWN_RES", "NUM_CREDITS", "NUM_DEPENDENTS",
+                   "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL", "TFC_RENT")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:21 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_OWN_RES"]] <- as.factor(crs$dataset[["OWN_RES"]])
+
+  ol <- levels(crs$dataset[["TFC_OWN_RES"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_OWN_RES"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:23 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "NUM_CREDITS", "NUM_DEPENDENTS", "TELEPHONE",
+                   "TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL", "TFC_RENT", "TFC_OWN_RES")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "NUM_CREDITS", "NUM_DEPENDENTS", "TELEPHONE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL", "TFC_RENT", "TFC_OWN_RES")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT", "OWN_RES", "JOB", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:31 x86_64-w64-mingw32 
+
+# Remap variables. 
+
+# Transform into a factor.
+
+  crs$dataset[["TFC_TELEPHONE"]] <- as.factor(crs$dataset[["TELEPHONE"]])
+
+  ol <- levels(crs$dataset[["TFC_TELEPHONE"]])
+  lol <- length(ol)
+  nl <- c(sprintf("[%s,%s]", ol[1], ol[1]), sprintf("(%s,%s]", ol[-lol], ol[-1]))
+  levels(crs$dataset[["TFC_TELEPHONE"]]) <- nl
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:53:33 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "NUM_CREDITS", "NUM_DEPENDENTS", "TFC_CHK_ACCT",
+                   "TFC_HISTORY", "TFC_NEW_CAR", "TFC_USED_CAR",
+                   "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION",
+                   "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL", "TFC_RENT", "TFC_OWN_RES",
+                   "TFC_TELEPHONE")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "NUM_CREDITS", "NUM_DEPENDENTS")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_FURNITURE", "TFC_RADIO.TV",
+                   "TFC_EDUCATION", "TFC_RETRAINING", "TFC_SAV_ACCT",
+                   "TFC_EMPLOYMENT", "TFC_CO.APPLICANT",
+                   "TFC_GUARANTOR", "TFC_PRESENT_RESIDENT",
+                   "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE",
+                   "TFC_OTHER_INSTALL", "TFC_RENT", "TFC_OWN_RES",
+                   "TFC_TELEPHONE")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT", "OWN_RES", "JOB", "TELEPHONE", "FOREIGN")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:54:32 x86_64-w64-mingw32 
+
+# The 'Hmisc' package provides the 'contents' function.
+
+library(Hmisc, quietly=TRUE)
+
+# Obtain a summary of the dataset.
+
+contents(crs$dataset[crs$train, c(crs$input, crs$risk, crs$target)])
+summary(crs$dataset[crs$train, c(crs$input, crs$risk, crs$target)])
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:56:06 x86_64-w64-mingw32 
+
+# The 'mice' package provides the 'md.pattern' function.
+
+library(mice, quietly=TRUE)
+
+# Generate a summary of the missing values in the dataset.
+
+md.pattern(crs$dataset[,c(crs$input, crs$target)])
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:56:17 x86_64-w64-mingw32 
+
+# The 'Hmisc' package provides the 'contents' function.
+
+library(Hmisc, quietly=TRUE)
+
+# Obtain a summary of the dataset.
+
+contents(crs$dataset[crs$train, c(crs$input, crs$risk, crs$target)])
+summary(crs$dataset[crs$train, c(crs$input, crs$risk, crs$target)])
+
+# The 'mice' package provides the 'md.pattern' function.
+
+library(mice, quietly=TRUE)
+
+# Generate a summary of the missing values in the dataset.
+
+md.pattern(crs$dataset[,c(crs$input, crs$target)])
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:59:37 x86_64-w64-mingw32 
+
+# Display box plots for the selected variables. 
+
+# Use ggplot2 to generate box plot for AMOUNT
+
+# Generate a box plot.
+
+p01 <- crs %>%
+  with(dataset[train,]) %>%
+  ggplot2::ggplot(ggplot2::aes(y=AMOUNT)) +
+  ggplot2::geom_boxplot(ggplot2::aes(x="All"), notch=TRUE, fill="grey") +
+  ggplot2::stat_summary(ggplot2::aes(x="All"), fun.y=mean, geom="point", shape=8) +
+  ggplot2::xlab("Rattle 2020-Oct-05 13:59:37 glopi") +
+  ggplot2::ggtitle("Distribution of AMOUNT (sample)") +
+  ggplot2::theme(legend.position="none")
+
+# Use ggplot2 to generate box plot for INSTALL_RATE
+
+# Generate a box plot.
+
+p02 <- crs %>%
+  with(dataset[train,]) %>%
+  ggplot2::ggplot(ggplot2::aes(y=INSTALL_RATE)) +
+  ggplot2::geom_boxplot(ggplot2::aes(x="All"), notch=TRUE, fill="grey") +
+  ggplot2::stat_summary(ggplot2::aes(x="All"), fun.y=mean, geom="point", shape=8) +
+  ggplot2::xlab("Rattle 2020-Oct-05 13:59:37 glopi") +
+  ggplot2::ggtitle("Distribution of INSTALL_RATE (sample)") +
+  ggplot2::theme(legend.position="none")
+
+# Display the plots.
+
+gridExtra::grid.arrange(p01, p02)
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:59:42 x86_64-w64-mingw32 
+
+# The 'gplots' package provides the 'barplot2' function.
+
+library(gplots, quietly=TRUE)
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:59:45 x86_64-w64-mingw32 
+
+# Bar Plot 
+
+# Generate the summary data for plotting.
+
+ds <- rbind(summary(na.omit(crs$dataset[crs$train,]$TFC_CHK_ACCT)))
+
+# Sort the entries.
+
+ord <- order(ds[1,], decreasing=TRUE)
+
+# Plot the data.
+
+bp <-  barplot2(ds[,ord], beside=TRUE, ylab="Frequency", xlab="TFC_CHK_ACCT", ylim=c(0, 340), col=colorspace::rainbow_hcl(1))
+
+# Add the actual frequencies.
+
+text(bp, ds[,ord]+11, ds[,ord])
+
+# Add a title to the plot.
+
+title(main="Distribution of TFC_CHK_ACCT (sample)",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:59:45 x86_64-w64-mingw32 
+
+# Bar Plot 
+
+# Generate the summary data for plotting.
+
+ds <- rbind(summary(na.omit(crs$dataset[crs$train,]$TFC_HISTORY)))
+
+# Sort the entries.
+
+ord <- order(ds[1,], decreasing=TRUE)
+
+# Plot the data.
+
+bp <-  barplot2(ds[,ord], beside=TRUE, ylab="Frequency", xlab="TFC_HISTORY", ylim=c(0, 443), col=colorspace::rainbow_hcl(1))
+
+# Add the actual frequencies.
+
+text(bp, ds[,ord]+15, ds[,ord])
+
+# Add a title to the plot.
+
+title(main="Distribution of TFC_HISTORY (sample)",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 13:59:46 x86_64-w64-mingw32 
+
+# Bar Plot 
+
+# Generate the summary data for plotting.
+
+ds <- rbind(summary(na.omit(crs$dataset[crs$train,]$TFC_SAV_ACCT)))
+
+# Sort the entries.
+
+ord <- order(ds[1,], decreasing=TRUE)
+
+# Plot the data.
+
+bp <-  barplot2(ds[,ord], beside=TRUE, ylab="Frequency", xlab="TFC_SAV_ACCT", ylim=c(0, 528), col=colorspace::rainbow_hcl(1))
+
+# Add the actual frequencies.
+
+text(bp, ds[,ord]+18, ds[,ord])
+
+# Add a title to the plot.
+
+title(main="Distribution of TFC_SAV_ACCT (sample)",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:04:47 x86_64-w64-mingw32 
+
+# Display box plots for the selected variables. 
+
+# Use ggplot2 to generate box plot for DURATION
+
+# Generate a box plot.
+
+p01 <- crs %>%
+  with(dataset[train,]) %>%
+  ggplot2::ggplot(ggplot2::aes(y=DURATION)) +
+  ggplot2::geom_boxplot(ggplot2::aes(x="All"), notch=TRUE, fill="grey") +
+  ggplot2::stat_summary(ggplot2::aes(x="All"), fun.y=mean, geom="point", shape=8) +
+  ggplot2::xlab("Rattle 2020-Oct-05 14:04:47 glopi") +
+  ggplot2::ggtitle("Distribution of DURATION (sample)") +
+  ggplot2::theme(legend.position="none")
+
+# Use ggplot2 to generate box plot for AMOUNT
+
+# Generate a box plot.
+
+p02 <- crs %>%
+  with(dataset[train,]) %>%
+  ggplot2::ggplot(ggplot2::aes(y=AMOUNT)) +
+  ggplot2::geom_boxplot(ggplot2::aes(x="All"), notch=TRUE, fill="grey") +
+  ggplot2::stat_summary(ggplot2::aes(x="All"), fun.y=mean, geom="point", shape=8) +
+  ggplot2::xlab("Rattle 2020-Oct-05 14:04:47 glopi") +
+  ggplot2::ggtitle("Distribution of AMOUNT (sample)") +
+  ggplot2::theme(legend.position="none")
+
+# Use ggplot2 to generate box plot for INSTALL_RATE
+
+# Generate a box plot.
+
+p03 <- crs %>%
+  with(dataset[train,]) %>%
+  ggplot2::ggplot(ggplot2::aes(y=INSTALL_RATE)) +
+  ggplot2::geom_boxplot(ggplot2::aes(x="All"), notch=TRUE, fill="grey") +
+  ggplot2::stat_summary(ggplot2::aes(x="All"), fun.y=mean, geom="point", shape=8) +
+  ggplot2::xlab("Rattle 2020-Oct-05 14:04:48 glopi") +
+  ggplot2::ggtitle("Distribution of INSTALL_RATE (sample)") +
+  ggplot2::theme(legend.position="none")
+
+# Display the plots.
+
+gridExtra::grid.arrange(p01, p02, p03)
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:05:51 x86_64-w64-mingw32 
+
+# Generate a correlation plot for the variables. 
+
+# The 'corrplot' package provides the 'corrplot' function.
+
+library(corrplot, quietly=TRUE)
+
+# Correlations work for numeric variables only.
+
+crs$cor <- cor(crs$dataset[crs$train, crs$numeric], use="pairwise", method="pearson")
+
+# Order the correlations by their strength.
+
+crs$ord <- order(crs$cor[1,])
+crs$cor <- crs$cor[crs$ord, crs$ord]
+
+# Display the actual correlations.
+
+print(crs$cor)
+
+# Graphically display the correlations.
+
+corrplot(crs$cor, mar=c(0,0,1,0))
+title(main="Correlation Credit Data.csv using Pearson",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:09:15 x86_64-w64-mingw32 
+
+# Principal Components Analysis (on numerics only).
+
+pc <- prcomp(na.omit(crs$dataset[crs$train, crs$numeric]), scale=TRUE, center=TRUE, tol=0)
+
+# Show the output of the analysis.
+
+pc
+
+# Summarise the importance of the components found.
+
+summary(pc)
+
+# Display a plot showing the relative importance of the components.
+
+plot(pc, main="")
+title(main="Principal Components Importance Credit Data.csv",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+axis(1, at=seq(0.7, ncol(pc$rotation)*1.2, 1.2), labels=colnames(pc$rotation), lty=0)
+
+# Display a plot showing the two most principal components.
+
+biplot(pc, main="")
+title(main="Principal Components Credit Data.csv",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:11:42 x86_64-w64-mingw32 
+
+# Regression model 
+
+# Build a Regression model.
+
+crs$glm <- glm(DEFAULT ~ .,
+    data=crs$dataset[crs$train, c(crs$input, crs$target)],
+    family=binomial(link="logit"))
+
+# Generate a textual view of the Linear model.
+
+print(summary(crs$glm))
+
+cat(sprintf("Log likelihood: %.3f (%d df)\n",
+            logLik(crs$glm)[1],
+            attr(logLik(crs$glm), "df")))
+
+cat(sprintf("Null/Residual deviance difference: %.3f (%d df)\n",
+            crs$glm$null.deviance-crs$glm$deviance,
+            crs$glm$df.null-crs$glm$df.residual))
+
+cat(sprintf("Chi-square p-value: %.8f\n",
+            dchisq(crs$glm$null.deviance-crs$glm$deviance,
+                   crs$glm$df.null-crs$glm$df.residual)))
+
+cat(sprintf("Pseudo R-Square (optimistic): %.8f\n",
+             cor(crs$glm$y, crs$glm$fitted.values)))
+
+cat('\n==== ANOVA ====\n\n')
+print(anova(crs$glm, test="Chisq"))
+cat("\n")
+
+# Time taken: 0.94 secs
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:17:46 x86_64-w64-mingw32 
+
+# Action the user selections from the Data tab. 
+
+# Build the train/validate/test datasets.
+
+# nobs=1000 train=700 validate=150 test=150
+
+set.seed(crv$seed)
+
+crs$nobs <- nrow(crs$dataset)
+
+crs$train <- sample(crs$nobs, 0.7*crs$nobs)
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  sample(0.15*crs$nobs) ->
+crs$validate
+
+crs$nobs %>%
+  seq_len() %>%
+  setdiff(crs$train) %>%
+  setdiff(crs$validate) ->
+crs$test
+
+# The following variable selections have been noted.
+
+crs$input     <- c("DURATION", "AMOUNT", "INSTALL_RATE",
+                   "TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_SAV_ACCT", "TFC_GUARANTOR",
+                   "TFC_PRESENT_RESIDENT", "TFC_OTHER_INSTALL")
+
+crs$numeric   <- c("DURATION", "AMOUNT", "INSTALL_RATE")
+
+crs$categoric <- c("TFC_CHK_ACCT", "TFC_HISTORY", "TFC_NEW_CAR",
+                   "TFC_USED_CAR", "TFC_SAV_ACCT", "TFC_GUARANTOR",
+                   "TFC_PRESENT_RESIDENT", "TFC_OTHER_INSTALL")
+
+crs$target    <- "DEFAULT"
+crs$risk      <- NULL
+crs$ident     <- NULL
+crs$ignore    <- c("X.U.FEFF.OBS.", "CHK_ACCT", "HISTORY", "NEW_CAR", "USED_CAR", "FURNITURE", "RADIO.TV", "EDUCATION", "RETRAINING", "SAV_ACCT", "EMPLOYMENT", "MALE_DIV", "MALE_SINGLE", "MALE_MAR_or_WID", "CO.APPLICANT", "GUARANTOR", "PRESENT_RESIDENT", "REAL_ESTATE", "PROP_UNKN_NONE", "AGE", "OTHER_INSTALL", "RENT", "OWN_RES", "NUM_CREDITS", "JOB", "NUM_DEPENDENTS", "TELEPHONE", "FOREIGN", "TFC_FURNITURE", "TFC_RADIO.TV", "TFC_EDUCATION", "TFC_RETRAINING", "TFC_EMPLOYMENT", "TFC_CO.APPLICANT", "TFC_REAL_ESTATE", "TFC_PROP_UNKN_NONE", "TFC_RENT", "TFC_OWN_RES", "TFC_TELEPHONE")
+crs$weights   <- NULL
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:18:10 x86_64-w64-mingw32 
+
+# Regression model 
+
+# Build a Regression model.
+
+crs$glm <- glm(DEFAULT ~ .,
+    data=crs$dataset[crs$train, c(crs$input, crs$target)],
+    family=binomial(link="logit"))
+
+# Generate a textual view of the Linear model.
+
+print(summary(crs$glm))
+
+cat(sprintf("Log likelihood: %.3f (%d df)\n",
+            logLik(crs$glm)[1],
+            attr(logLik(crs$glm), "df")))
+
+cat(sprintf("Null/Residual deviance difference: %.3f (%d df)\n",
+            crs$glm$null.deviance-crs$glm$deviance,
+            crs$glm$df.null-crs$glm$df.residual))
+
+cat(sprintf("Chi-square p-value: %.8f\n",
+            dchisq(crs$glm$null.deviance-crs$glm$deviance,
+                   crs$glm$df.null-crs$glm$df.residual)))
+
+cat(sprintf("Pseudo R-Square (optimistic): %.8f\n",
+             cor(crs$glm$y, crs$glm$fitted.values)))
+
+cat('\n==== ANOVA ====\n\n')
+print(anova(crs$glm, test="Chisq"))
+cat("\n")
+
+# Time taken: 0.27 secs
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:19:49 x86_64-w64-mingw32 
+
+# Evaluate model performance on the validation dataset. 
+
+# Generate an Error Matrix for the Linear model.
+
+# Obtain the response from the Linear model.
+
+crs$pr <- as.vector(ifelse(predict(crs$glm, 
+   type    = "response",
+   newdata = crs$dataset[crs$validate, c(crs$input, crs$target)]) > 0.5, "1", "0"))
+
+# Generate the confusion matrix showing counts.
+
+rattle::errorMatrix(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT, crs$pr, count=TRUE)
+
+# Generate the confusion matrix showing proportions.
+
+(per <- rattle::errorMatrix(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT, crs$pr))
+
+# Calculate the overall error percentage.
+
+cat(100-sum(diag(per), na.rm=TRUE))
+
+# Calculate the averaged class error percentage.
+
+cat(mean(per[,"Error"], na.rm=TRUE))
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:21:26 x86_64-w64-mingw32 
+
+# Evaluate model performance on the validation dataset. 
+
+# Risk Chart: requires the ggplot2 package.
+
+library(ggplot2)
+
+# Generate a risk chart.
+
+# Rattle provides evaluateRisk() and riskchart().
+
+crs$pr <- predict(crs$glm, 
+   type    = "response",
+   newdata = crs$dataset[crs$validate, c(crs$input, crs$target)])
+
+crs$eval <- evaluateRisk(crs$pr, crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT)
+print(riskchart(crs$pr, 
+    crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT, 
+    title="Performance Chart Linear Credit Data.csv [validate] ", show.lift=TRUE, show.precision=TRUE, legend.horiz=FALSE))
+
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:22:32 x86_64-w64-mingw32 
+
+# Evaluate model performance on the validation dataset. 
+
+# Lift Chart: requires the ROCR package.
+
+library(ROCR)
+
+# Obtain predictions for the glm model on Credit Data.csv [validate].
+
+crs$pr <- predict(crs$glm, 
+   type    = "response",
+   newdata = crs$dataset[crs$validate, c(crs$input, crs$target)])
+
+# Remove observations with missing target.
+
+no.miss   <- na.omit(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT)
+miss.list <- attr(no.miss, "na.action")
+attributes(no.miss) <- NULL
+
+if (length(miss.list))
+{
+  pred <- prediction(crs$pr[-miss.list], no.miss)
+} else
+{
+  pred <- prediction(crs$pr, no.miss)
+}
+
+# Convert rate of positive predictions to percentage.
+
+per <- performance(pred, "lift", "rpp")
+per@x.values[[1]] <- per@x.values[[1]]*100
+
+# Plot the lift chart.
+ROCR::plot(per, col="#CC0000FF", lty=1, xlab="Caseload (%)", add=FALSE)
+
+# Add a legend to the plot.
+
+legend("topright", c("glm"), col=rainbow(1, 1, .8), lty=1:1, title="Models", inset=c(0.05, 0.05))
+
+# Add decorations to the plot.
+
+title(main="Lift Chart  Credit Data.csv [validate]",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+grid()
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:23:12 x86_64-w64-mingw32 
+
+# Evaluate model performance on the validation dataset. 
+
+# ROC Curve: requires the ROCR package.
+
+library(ROCR)
+
+# ROC Curve: requires the ggplot2 package.
+
+library(ggplot2, quietly=TRUE)
+
+# Generate an ROC Curve for the glm model on Credit Data.csv [validate].
+
+crs$pr <- predict(crs$glm, 
+   type    = "response",
+   newdata = crs$dataset[crs$validate, c(crs$input, crs$target)])
+
+# Remove observations with missing target.
+
+no.miss   <- na.omit(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT)
+miss.list <- attr(no.miss, "na.action")
+attributes(no.miss) <- NULL
+
+if (length(miss.list))
+{
+  pred <- prediction(crs$pr[-miss.list], no.miss)
+} else
+{
+  pred <- prediction(crs$pr, no.miss)
+}
+
+pe <- performance(pred, "tpr", "fpr")
+au <- performance(pred, "auc")@y.values[[1]]
+pd <- data.frame(fpr=unlist(pe@x.values), tpr=unlist(pe@y.values))
+p <- ggplot(pd, aes(x=fpr, y=tpr))
+p <- p + geom_line(colour="red")
+p <- p + xlab("False Positive Rate") + ylab("True Positive Rate")
+p <- p + ggtitle("ROC Curve Linear Credit Data.csv [validate] DEFAULT")
+p <- p + theme(plot.title=element_text(size=10))
+p <- p + geom_line(data=data.frame(), aes(x=c(0,1), y=c(0,1)), colour="grey")
+p <- p + annotate("text", x=0.50, y=0.00, hjust=0, vjust=0, size=5,
+                   label=paste("AUC =", round(au, 2)))
+print(p)
+
+# Calculate the area under the curve for the plot.
+
+
+# Remove observations with missing target.
+
+no.miss   <- na.omit(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT)
+miss.list <- attr(no.miss, "na.action")
+attributes(no.miss) <- NULL
+
+if (length(miss.list))
+{
+  pred <- prediction(crs$pr[-miss.list], no.miss)
+} else
+{
+  pred <- prediction(crs$pr, no.miss)
+}
+performance(pred, "auc")
+
+#=======================================================================
+# Rattle timestamp: 2020-10-05 14:24:00 x86_64-w64-mingw32 
+
+# Evaluate model performance on the validation dataset. 
+
+# Precision/Recall Plot: requires the ROCR package
+
+library(ROCR)
+
+# Generate a Precision/Recall Plot for the glm model on Credit Data.csv [validate].
+
+crs$pr <- predict(crs$glm, 
+   type    = "response",
+   newdata = crs$dataset[crs$validate, c(crs$input, crs$target)])
+
+# Remove observations with missing target.
+
+no.miss   <- na.omit(crs$dataset[crs$validate, c(crs$input, crs$target)]$DEFAULT)
+miss.list <- attr(no.miss, "na.action")
+attributes(no.miss) <- NULL
+
+if (length(miss.list))
+{
+  pred <- prediction(crs$pr[-miss.list], no.miss)
+} else
+{
+  pred <- prediction(crs$pr, no.miss)
+}
+ROCR::plot(performance(pred, "prec", "rec"), col="#CC0000FF", lty=1, add=FALSE)
+
+
+# Add a legend to the plot.
+
+legend("bottomleft", c("glm"), col=rainbow(1, 1, .8), lty=1:1, title="Models", inset=c(0.05, 0.05))
+
+# Add decorations to the plot.
+
+title(main="Precision/Recall Plot  Credit Data.csv [validate]",
+    sub=paste("Rattle", format(Sys.time(), "%Y-%b-%d %H:%M:%S"), Sys.info()["user"]))
+grid()
